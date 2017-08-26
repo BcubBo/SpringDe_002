@@ -10,12 +10,25 @@
            http://www.springframework.org/schema/context/spring-context-3.2.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"
-           default-autowire="byName"
+           
 		>
            <!-- xxx testDao = new dao.TestDao() -->
-	<bean class="dao.TestDao" id="dao"></bean>
-	<bean id="testBiz" class="biz.TestBiz"></bean>
+	<bean class="dao.TestDao" id="testDao"></bean>
+	<bean id="testBiz" class="biz.TestBiz">
+		<property name="dao">
+			<ref bean="testDao"/>
+		</property>
+	</bean>
+	<bean id="testLogger" class="Logger.testLogger"></bean>
 	<!-- 暂时注销aop切面部分配置，关注焦点回到注入上 -->
-
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(public * biz..*(..))" id="pointcut"/>
+		<aop:aspect ref="testLogger">
+			<aop:before method="beforeLogger" pointcut-ref="pointcut"/>
+			<aop:after-returning method="afterReturningLogger" pointcut-ref="pointcut"
+			returning="result"/>
+		</aop:aspect>
+	</aop:config>
+	
     
 </beans>
