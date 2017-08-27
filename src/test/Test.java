@@ -2,18 +2,10 @@ package test;
 
 
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
+import biz.TestBiz;
 import dao.ITestBiz;
 
 public class Test {
@@ -24,7 +16,7 @@ public class Test {
 		
 //		new TestBiz().testBiz();此时会报空指针的异常
 		ApplicationContext appctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ITestBiz biz = (ITestBiz)appctx.getBean("testBiz");
+		ITestBiz biz = (TestBiz)appctx.getBean("testBiz");
 		System.out.println("=========初始化完毕=========");
 		//获取bean
 		//biz.init();

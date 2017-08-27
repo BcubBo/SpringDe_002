@@ -9,8 +9,6 @@ import org.apache.logging.log4j.core.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 
-import biz.TestBiz;
-
 
 
 public class testLogger {
@@ -28,7 +26,7 @@ public class testLogger {
 		System.out.println(jp.getTarget()+"\n"+jp.getSignature().getName()+"\n"+jp.getArgs()[0]+
 				" 返回:"+result);
 		
-		String msg = (String)result;
+		//String msg = (String)result;
 		
 		
 	}//
