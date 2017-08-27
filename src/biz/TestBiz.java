@@ -9,11 +9,17 @@ public class TestBiz implements ITestBiz{
 	
 	private ITestDao dao;
 	
-	public String testBiz(String msg,Object result) {
+	public String testBiz(String msg,Object result)throws Exception {
 		
 //		ITestDao dao = DaoFactory.getInstance();
 		System.out.println("Hello,Spring");
 		dao.testDao();
+		
+		try {
+//			int i = 10/0;
+		} catch (Exception e) {
+			throw e;
+		}
 		return result.toString();
 		
 	}
